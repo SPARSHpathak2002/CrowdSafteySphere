@@ -1,0 +1,46 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-jNQ0z4CKF9Hbd2Y9fV8dVgqeUZGStknj/920Vp6c7puv4+6ZQcXST5Rt+Ro2epJvVVUj4x/+cs70iUFZC5ugdA==" crossorigin="anonymous" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+   
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">C | S | S</a>
+    
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="{{ url_for('index') }}" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="{{ url_for('about') }}" class="pure-menu-link">About</a></li>                
+            </ul>
+        </div>
+    </div>
+    
+    {% block content %}{% endblock %}
+       
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Add JavaScript to handle the button click and make an AJAX request -->
+    <script>
+        $(document).ready(function() {
+            $('#runScriptButton').click(function() {
+                // Make an AJAX request to the Flask route to run the other Python script
+                $.post('/run_script', function(result) {
+                    // Display the result in the result container
+                    alert(result)
+                });
+            });
+        });
+    </script>
+  
+    
+    </body>
+    </html>
